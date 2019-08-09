@@ -51,11 +51,12 @@ fun Application.module(testing: Boolean = false) {
         }
 
         get("/pokuritbkalik") {
-            if (ThreadLocalRandom.current().nextBoolean()) {
-                call.respondText { "ПРИШЕЛ ТИМЛИДЫЧ И ВЫКУРИЛ ВЕСЬ КАЛИК!" }
-            } else {
-                call.respondText { "ВЫ ПОКУРИЛИ КАЛИК И ЗАРАЗИЛИСЬ СПИДОМ! ТЕПЕРЬ ВАМ ПЕЗДА!" }
-            }
+            call.respondText { ThreadLocalRandom.current().nextBoolean().toString() }
+//            if (ThreadLocalRandom.current().nextBoolean()) {
+//                call.respondText { "ПРИШЕЛ ТИМЛИДЫЧ И ВЫКУРИЛ ВЕСЬ КАЛИК!" }
+//            } else {
+//                call.respondText { "ВЫ ПОКУРИЛИ КАЛИК И ЗАРАЗИЛИСЬ СПИДОМ! ТЕПЕРЬ ВАМ ПЕЗДА!" }
+//            }
         }
     }
 }

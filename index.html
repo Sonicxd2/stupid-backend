@@ -8,8 +8,9 @@
 
         function sasi() {
             document.getElementById("matebal").addEventListener("click", matebal, false)
-            document.getElementById("shashlik").addEventListener("click",shashlikprepare,false)
-            document.getElementById("kalik").addEventListener("click",kaliksmoke,true)
+            document.getElementById("shashlik").addEventListener("click", shashlikprepare, false)
+            document.getElementById("kalik").addEventListener("click", kaliksmoke, true)
+
             function matebal() {
                 let mateball = new XMLHttpRequest();
                 mateball.open("POST", "sasi?sasi=tvoyamaman", true);
@@ -17,7 +18,7 @@
 
                 mateball.onreadystatechange = function () {
                     if (mateball.readyState === 4 && mateball.status === 200) {
-                        let sasi=JSON.parse(mateball.response);
+                        let sasi = JSON.parse(mateball.response);
                         document.getElementById("sasi").innerHTML += sasi.a;
                     }
                 };
@@ -25,6 +26,7 @@
                 mateball.send();
 
             }
+
             function shashlikprepare() {
                 let mateball = new XMLHttpRequest();
                 mateball.open("GET", "prepairshashlik", true);
@@ -38,14 +40,27 @@
 
                 mateball.send();
             }
+
             function kaliksmoke() {
+                document.getElementById("timlid").style.visibility = "hidden";
                 let mateball = new XMLHttpRequest();
                 mateball.open("GET", "pokuritbkalik", true);
                 mateball.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
                 mateball.onreadystatechange = function () {
                     if (mateball.readyState === 4 && mateball.status === 200) {
-                        alert(mateball.response)
+                        if (mateball.response === "true") {
+                            document.getElementById("timlid").style.visibility = "visible";
+
+                            function huy() {
+                                alert("ПРИШЕЛ ЭТОТ ЧЕЛОВЕК(ТИМЛИДЫЧ) И ВЫКУРИЛ ВЕСЬ КАЛИК!")
+                            }
+                            setTimeout(huy, 100);
+
+                        } else {
+                            alert("ВЫ ПОКУРИЛИ КАЛИК И ЗАРАЗИЛИСЬ СПИДОМ! ТЕПЕРЬ ВАМ ПЕЗДА!");
+                        }
+
                     }
                 };
 
@@ -59,5 +74,7 @@
 <button id="shashlik">ГОТОВИТЬ ШАШЛЫК</button>
 <button id="kalik">ПОКУРИТЬ КАЛИК</button>
 <div id="sasi"></div>
+<img src="https://sun9-42.userapi.com/c848528/v848528543/1cd77f/CqJuAwJvMDk.jpg" id="timlid"
+     style="visibility: hidden; width:100%;height:1000px" alt="sasi">
 </body>
 </html>
