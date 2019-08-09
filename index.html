@@ -16,7 +16,8 @@
 
                 mateball.onreadystatechange = function () {
                     if (mateball.readyState === 4 && mateball.status === 200) {
-                        document.getElementById("sasi").innerHTML += mateball.response;
+                        let sasi=JSON.parse(mateball.response);
+                        document.getElementById("sasi").innerHTML += sasi.a;
                     }
                 };
 
