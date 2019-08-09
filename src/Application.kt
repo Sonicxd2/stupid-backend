@@ -13,7 +13,7 @@ import java.io.File
 
 fun main(args: Array<String>): Unit = io.ktor.server.jetty.EngineMain.main(args)
 
-data class Hueta(val a:String)
+data class Hueta(val a: String)
 
 
 @Suppress("unused") // Referenced in application.conf
@@ -38,5 +38,15 @@ fun Application.module(testing: Boolean = false) {
             }
         }
 
+        var shahlikState = 0
+        get("/prepairshashlik") {
+            shahlikState += 10
+            if (shahlikState > 100) {
+                call.respondText { "ТЫ ЛОХ ШАШЛЫК СГОРЕЛ" }
+                shahlikState = 0
+            } else {
+                call.respondText { "ШАШЛЫК ГОТОВ НА $shahlikState%" }
+            }
+        }
     }
 }
