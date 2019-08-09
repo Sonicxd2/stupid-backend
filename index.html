@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Huy</title>
+    <script>
+        window.addEventListener("load", sasi, false);
+
+        function sasi() {
+            document.getElementById("matebal").addEventListener("click", matebal, false)
+
+            function matebal() {
+                let mateball = new XMLHttpRequest();
+                mateball.open("POST", "sasi?sasi=tvoyamaman", true);
+                mateball.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                mateball.onreadystatechange = function () {
+                    if (mateball.readyState === 4 && mateball.status === 200) {
+                        document.getElementById("sasi").innerHTML += mateball.response;
+                    }
+                };
+
+                mateball.send();
+
+            }
+        }
+    </script>
+</head>
+<body>
+<button id="matebal">sasi</button>
+<div id="sasi"></div>
+</body>
+</html>
