@@ -13,6 +13,9 @@ import java.io.File
 
 fun main(args: Array<String>): Unit = io.ktor.server.jetty.EngineMain.main(args)
 
+data class Hueta(val a:String)
+
+
 @Suppress("unused") // Referenced in application.conf
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false) {
@@ -31,7 +34,7 @@ fun Application.module(testing: Boolean = false) {
             if (s == null) {
                 call.respondText { "ТЫ ХУЙ" }
             } else {
-                call.respondText {s}
+                call.respond(Hueta(s))
             }
         }
 
