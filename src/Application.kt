@@ -10,6 +10,7 @@ import io.ktor.http.content.*
 import io.ktor.features.*
 import io.ktor.gson.*
 import java.io.File
+import java.util.concurrent.ThreadLocalRandom
 
 fun main(args: Array<String>): Unit = io.ktor.server.jetty.EngineMain.main(args)
 
@@ -46,6 +47,14 @@ fun Application.module(testing: Boolean = false) {
                 shahlikState = 0
             } else {
                 call.respondText { "ШАШЛЫК ГОТОВ НА $shahlikState%" }
+            }
+        }
+
+        get("/pokuritbkalik") {
+            if (ThreadLocalRandom.current().nextBoolean()) {
+                call.respondText { "ПРИШЕЛ ТИМЛИДЫЧ И ВЫКУРИЛ ВЕСЬ КАЛИК!" }
+            } else {
+                call.respondText { "ВЫ ПОКУРИЛИ КАЛИК И ЗАРАЗИЛИСЬ СПИДОМ! ТЕПЕРЬ ВАМ ПЕЗДА!" }
             }
         }
     }
